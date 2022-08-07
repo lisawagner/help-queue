@@ -1,8 +1,11 @@
+import Header from "./components/Header";
+import TicketControl from "./components/TicketControl/TicketControl";
 
 function App() {
   return (
     <>
-      data
+      <Header />
+      <TicketControl />
     </>
   );
 }
