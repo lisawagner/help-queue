@@ -1,6 +1,8 @@
 import ticketListReducer from '../../reducers/ticket-list-reducer'
 
 describe('ticketListReducer', () => {
+  let action
+  
   const currentState = {
     1: {
       names: 'Bill & Ted',
@@ -25,7 +27,6 @@ describe('ticketListReducer', () => {
   }) 
 
   // Test for Adding Tickets
-  let action
   const ticketData = {
     names: 'Bill & Ted',
     location: 'Cordova',
@@ -35,6 +36,7 @@ describe('ticketListReducer', () => {
 
   test('Should add new ticket data to mainTicketList', () => {
     const { names, location, issue, id } = ticketData
+
     action = {
       type: 'ADD_TICKET',
       names,
@@ -55,10 +57,12 @@ describe('ticketListReducer', () => {
 
   // Test for Deleting a Ticket
   test('Should successfully delete a ticket', () => {
+
     action = {
       type: 'DELETE_TICKET',
       id: 1
     };
+    
     expect(ticketListReducer(currentState, action)).toEqual({
       2: {
         names: 'Eleven and Nancy',
