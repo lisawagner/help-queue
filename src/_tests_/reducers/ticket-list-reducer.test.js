@@ -1,6 +1,6 @@
 import * as c from '../../actions/ActionTypes'
 import ticketListReducer from '../../reducers/ticket-list-reducer'
-
+import { formatDistanceToNow } from 'date-fns'
 
 describe('ticketListReducer', () => {
   let action
@@ -36,26 +36,51 @@ describe('ticketListReducer', () => {
     id: 1
   }
 
-  test('Should add new ticket data to mainTicketList', () => {
-    const { names, location, issue, id } = ticketData
-
+  test('should successfully add a ticket to the ticket list that includes date-fns formatted wait times', () => {
+    const { names, location, issue, timeOpen, id } = ticketData;
     action = {
       type: c.ADD_TICKET,
       names,
       location,
       issue,
-      id
+      timeOpen,
+      id,
+      formattedWaitTime: formatDistanceToNow(new Date(), {
+        addSuffix: true
+      })
     }
-
     expect(ticketListReducer({}, action)).toEqual({
       [id] : {
         names,
         location,
         issue,
-        id
+        timeOpen,
+        id,
+        formattedWaitTime: 'less than a minute ago'
       }
     })
   })
+
+  // test('Should add new ticket data to mainTicketList', () => {
+  //   const { names, location, issue, id } = ticketData
+
+  //   action = {
+  //     type: c.ADD_TICKET,
+  //     names,
+  //     location,
+  //     issue,
+  //     id
+  //   }
+
+  //   expect(ticketListReducer({}, action)).toEqual({
+  //     [id] : {
+  //       names,
+  //       location,
+  //       issue,
+  //       id
+  //     }
+  //   })
+  // })
 
   // Test for Deleting a Ticket
   test('Should successfully delete a ticket', () => {
@@ -74,5 +99,29 @@ describe('ticketListReducer', () => {
       }
     })
   })
+
+  // Test for adding a formatted wait time to ticket entry
+  test('Should add a formated wait time to ticket entry', () => {
+    const { names, location, issue, timeOpen, id } = ticketData
+
+    action = {
+      type: c.UPDATE_TIME,
+      formattedWaitTime: '4 minutes ago',
+      id
+    }
+
+    expect(ticketListReducer({ [id] : ticketData }, action)).toEqual({
+      [id] : {
+        names,
+        location,
+        issue,
+        timeOpen,
+        id,
+        formattedWaitTime: '4 minutes ago'
+      }
+    })
+    
+  })
+
 
 })

@@ -25,13 +25,26 @@ it('addTicket should create ADD_TICKET action', () => {
   expect(actions.addTicket({
     names: 'Eleven and Max', 
     location: 'the Upside Down', 
-    issue: 'Nobody normal ever accomplished anything meaningful in this world.', 
+    issue: 'Nobody normal ever accomplished anything meaningful in this world.',
+    timeOpen: 0,
+    formattedWaitTime: 'less than a minute ago',
     id: 1
   })).toEqual({
     type: c.ADD_TICKET,
     names: 'Eleven and Max',
     location: 'the Upside Down',
     issue: 'Nobody normal ever accomplished anything meaningful in this world.',
+    timeOpen: 0,
+    formattedWaitTime: 'less than a minute ago',
     id: 1
+  })
+})
+
+// UPDATE_TIME action test
+it('updateTime should create UPDATE_TIME action', () => {
+  expect(actions.updateTime(1, 'less than a minute ago')).toEqual({
+    type: c.UPDATE_TIME,
+    id: 1,
+    formattedWaitTime: 'less than a minute ago'
   })
 })
