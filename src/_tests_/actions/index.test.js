@@ -1,4 +1,5 @@
 import * as actions from './../../actions'
+import * as c from '../../actions/ActionTypes'
 
 // NOTE: jest test() and it() functions are interchangeable
 
@@ -6,7 +7,7 @@ import * as actions from './../../actions'
 describe('Help Queue actions', () => {
   it('deleteTicket should create DELETE_TICKET action', () => {
     expect(actions.deleteTicket(1)).toEqual({
-      type: 'DELETE_TICKET',
+      type: c.DELETE_TICKET,
       id: 1
     })
   })
@@ -15,7 +16,7 @@ describe('Help Queue actions', () => {
 // TOGGLE_FORM action test
 it('toggleForm should create TOGGLE_FORM action', () => {
   expect(actions.toggleForm()).toEqual({
-    type: 'TOGGLE_FORM'
+    type: c.TOGGLE_FORM
   })
 })
 
@@ -27,7 +28,7 @@ it('addTicket should create ADD_TICKET action', () => {
     issue: 'Nobody normal ever accomplished anything meaningful in this world.', 
     id: 1
   })).toEqual({
-    type: 'ADD_TICKET',
+    type: c.ADD_TICKET,
     names: 'Eleven and Max',
     location: 'the Upside Down',
     issue: 'Nobody normal ever accomplished anything meaningful in this world.',

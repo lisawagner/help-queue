@@ -1,4 +1,6 @@
+import * as c from '../../actions/ActionTypes'
 import ticketListReducer from '../../reducers/ticket-list-reducer'
+
 
 describe('ticketListReducer', () => {
   let action
@@ -38,7 +40,7 @@ describe('ticketListReducer', () => {
     const { names, location, issue, id } = ticketData
 
     action = {
-      type: 'ADD_TICKET',
+      type: c.ADD_TICKET,
       names,
       location,
       issue,
@@ -59,7 +61,7 @@ describe('ticketListReducer', () => {
   test('Should successfully delete a ticket', () => {
 
     action = {
-      type: 'DELETE_TICKET',
+      type: c.DELETE_TICKET,
       id: 1
     };
     
