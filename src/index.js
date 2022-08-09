@@ -21,7 +21,7 @@ const store = createStore(rootReducer)
 // )
 
 const rrfProps = {
-  db,
+  firebase: db,
   config: {
         userProfile: "users"
     },
@@ -34,7 +34,7 @@ root.render(
   <Provider store={store}>
     <ReactReduxFirebaseProvider {...rrfProps}>
       <App />
-      </ReactReduxFirebaseProvider>
+    </ReactReduxFirebaseProvider>
   </Provider>
 );
 
