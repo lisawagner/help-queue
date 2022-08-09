@@ -16,7 +16,7 @@ function EditTicketForm (props) {
       location: event.target.location.value,
       issue: event.target.issue.value,
     }
-    return firestore.update({ collectcion: 'tickets', doc: ticket.id }, propertiesToUpdate)
+    return firestore.update({ collection: 'tickets', doc: ticket.id }, propertiesToUpdate)
   }
 
   return (
@@ -30,7 +30,7 @@ function EditTicketForm (props) {
 
 EditTicketForm.propTypes = {
   onEditTicket: PropTypes.func,
-  ticket: PropTypes.object
+  // ticket: PropTypes.object
 };
 
 export default EditTicketForm;
