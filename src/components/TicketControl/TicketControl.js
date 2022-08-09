@@ -8,7 +8,7 @@ import NewTicketForm from './NewTicketForm'
 import EditTicketForm from './EditTicketForm'
 import TicketDetail from './TicketDetail'
 // firebase
-import { withFirestore } from 'react-redux-firebase'
+import { withFirestore, isLoaded } from 'react-redux-firebase'
 
 class TicketControl extends React.Component {
 
@@ -20,38 +20,14 @@ class TicketControl extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.waitTimeUpdateTimer = setInterval(() => 
-  //   this.updateTicketElapsedWaitTime(),
-  //   60000
-  //   )
-  // }
-  
-    // componentWillUnmount(){
-    //   clearInterval(this.waitTimeUpdateTimer);
-    // }
-  
-    // Refactor: Every 60 secs, this function dispatches an action for 
-    //   every single ticket in the queue.
-    // updateTicketElapsedWaitTime = () => {
-      // const { dispatch } = this.props
-      // Object.values(this.props.mainTicketList).forEach(ticket => {
-      //     const newFormattedWaitTime = formatDistanceToNow(ticket.timeOpen, {
-      //       addSuffix: true
-      //     })
-      //   const action = a.updateTime(ticket.id, newFormattedWaitTime)
-      //   dispatch(action)
-      // })
-    // }
-
   handleClick = () => {
+    const { dispatch } = this.props
     if (this.state.selectedTicket != null) {
       this.setState({
         selectedTicket: null,
         editing: false
-      });
+      })
     } else {
-      const { dispatch } = this.props;
       const action = a.toggleForm()
       dispatch(action)
       }
@@ -81,8 +57,7 @@ class TicketControl extends React.Component {
   }
 
   handleChangingSelectedTicket = (id) => {
-    this.props.firestore.get({collection: 'tickets', doc: id})
-      .then((ticket) => {
+    this.props.firestore.get({collection: 'tickets', doc: id}).then((ticket) => {
         const firestoreTicket = {
           names: ticket.get('names'),
           location: ticket.get('location'),
@@ -100,16 +75,19 @@ class TicketControl extends React.Component {
       currentlyVisibleState = <EditTicketForm ticket = {this.state.selectedTicket} onEditTicket = {this.handleEditingTicketInList} />
       buttonText = "Return to Ticket List"
     } else if (this.state.selectedTicket != null) {
-      currentlyVisibleState = <TicketDetail 
-      ticket={this.state.selectedTicket} 
-      onClickingDelete={this.handleDeletingTicket}
-      onClickingEdit = {this.handleEditClick} />
-      buttonText = "Return to Ticket List"
+      currentlyVisibleState =
+        <TicketDetail 
+          ticket={this.state.selectedTicket} 
+          onClickingDelete={this.handleDeletingTicket}
+          onClickingEdit = {this.handleEditClick} />
+        buttonText = "Return to Ticket List"
     } else if (this.props.formVisibleOnPage) {
-      currentlyVisibleState = <NewTicketForm onNewTicketCreation={this.handleAddingNewTicketToList}/>
-      buttonText = "Return to Ticket List"
+      currentlyVisibleState =
+        <NewTicketForm
+          onNewTicketCreation={this.handleAddingNewTicketToList}/>
+        buttonText = "Return to Ticket List"
     } else {
-      currentlyVisibleState = <TicketList onTicketSelection={this.handleChangingSelectedTicket} ticketList={this.props.mainTicketList} />
+      currentlyVisibleState = <TicketList onTicketSelection={this.handleChangingSelectedTicket} />
       buttonText = "Add Ticket"
     }
     return (
@@ -123,13 +101,11 @@ class TicketControl extends React.Component {
 }
 
 TicketControl.propTypes = {
-  mapTicketList: PropTypes.object,
   formVisibleOnPage: PropTypes.bool
 }
 
 const mapStateToProps = state => {
   return {
-    // mainTicketList: state.mainTicketList,
     formVisibleOnPage: state.formVisibleOnPage
   }
 }
