@@ -1,21 +1,10 @@
 import * as c from '../actions/ActionTypes'
 
 const reducer = (state = {}, action) => {
-  const { names, location, issue, id, formattedWaitTime, timeOpen } = action
+  const { id, formattedWaitTime } = action
 
   switch (action.type) {
 
-    case c.ADD_TICKET:
-      return Object.assign({}, state, {
-        [id]: {
-          names,
-          location,
-          issue,
-          id,
-          timeOpen,
-          formattedWaitTime
-        }
-      })
     case c.DELETE_TICKET:
       const newState = { ...state }
       delete newState[id]
