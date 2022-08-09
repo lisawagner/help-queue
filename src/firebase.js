@@ -1,8 +1,5 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-
-// Add SDKs for Firebase products that you want to use
-import { getFirestore } from 'firebase/firestore'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -14,10 +11,7 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID 
 }
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig)
+firebase.firestore()
 
-// Initialize Services Modules
-const db = getFirestore(app)
-
-export { db }
+export default firebase
