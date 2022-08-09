@@ -12,10 +12,15 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.2",
+    "react-redux-firebase": "^3.11.0",
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
+    "redux-firestore": "^1.0.0",
     "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
