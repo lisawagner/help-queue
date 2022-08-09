@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux/es/exports'
+import { formatDistanceToNow } from 'date-fns'
 import PropTypes from 'prop-types'
 import * as a from '../../actions'
 // components
@@ -21,22 +22,25 @@ class TicketControl extends React.Component {
   componentDidMount() {
     this.waitTimeUpdateTimer = setInterval(() => 
     this.updateTicketElapsedWaitTime(),
-    1000
+    60000
     )
   }
-
-    // We won't be using this method for our Help Queue update — but it's important to see how it works.
-    componentDidUpdate() {
-      console.log("component updated!");
-    }
   
     componentWillUnmount(){
-      console.log("component unmounted!");
       clearInterval(this.waitTimeUpdateTimer);
     }
   
+    // Refactor: Every 60 secs, this function dispatches an action for 
+    //   every single ticket in the queue.
     updateTicketElapsedWaitTime = () => {
-      console.log("tick");
+      const { dispatch } = this.props
+      Object.values(this.props.mainTicketList).forEach(ticket => {
+          const newFormattedWaitTime = formatDistanceToNow(ticket.timeOpen, {
+            addSuffix: true
+          })
+        const action = a.updateTime(ticket.id, newFormattedWaitTime)
+        dispatch(action)
+      })
     }
 
   handleClick = () => {
