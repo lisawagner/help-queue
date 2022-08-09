@@ -1,28 +1,40 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import reportWebVitals from './reportWebVitals'
 // createStore is depricated. Look into configureStore from redux toolkit
 import { createStore } from 'redux'
-import { Provider } from 'react-redux';
-// import reducer from './reducers/ticket-list-reducer';
-import rootReducer from './reducers';
+import { Provider } from 'react-redux'
+import rootReducer from './reducers'
+// firebase
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
+import { createFirestoreInstance } from 'redux-firestore'
+import { db } from './firebase'
 // components
-import App from './App';
+import App from './App'
 // styles
-import './index.css';
+import './index.css'
 
 const store = createStore(rootReducer)
 
-store.subscribe(() => 
-  console.log(store.getState())
-)
+// store.subscribe(() => 
+//   console.log(store.getState())
+// )
+
+const rrfProps = {
+  db,
+  config: {
+        userProfile: "users"
+    },
+  dispatch: store.dispatch,
+  createFirestoreInstance
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <React.StrictMode>
+    <ReactReduxFirebaseProvider {...rrfProps}>
       <App />
-    </React.StrictMode>
+      </ReactReduxFirebaseProvider>
   </Provider>
 );
 
