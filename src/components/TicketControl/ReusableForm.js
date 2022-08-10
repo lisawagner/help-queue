@@ -9,10 +9,12 @@ function ReusableForm(props) {
           <input
             type='text'
             name='names'
+            autoComplete='off'
             placeholder='Pair Names' />
           <input
             type='text'
             name='location'
+            autoComplete='off'
             placeholder='Location' />
           <textarea
             name='issue'

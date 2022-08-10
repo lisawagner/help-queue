@@ -50,8 +50,16 @@ function Signin() {
       <div className='access-wrap'>
         <h1>Sign Up</h1>
         <form onSubmit={handleSignUp}>
-          <input type='text' name='email' placeholder='Email' />
-          <input type='password' name='password' placeholder='Password' />
+          <input
+            type='text'
+            name='email'
+            autoComplete='off'
+            placeholder='Email' />
+          <input
+            type='password'
+            name='password'
+            autoComplete='off'
+            placeholder='Password' />
           <button type='submit'>Sign up</button>
         </form>
 
@@ -60,10 +68,12 @@ function Signin() {
           <input
             type='text'
             name='signinEmail'
+            autoComplete='email'
             placeholder='email' />
           <input
             type='password'
             name='signinPassword'
+            autoComplete='password'
             placeholder='Password' />
           <button type='submit'>Sign in</button>
         </form>
