@@ -1,12 +1,17 @@
-import Header from "./components/Header";
-import TicketControl from "./components/TicketControl/TicketControl";
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Header from "./components/Header"
+import TicketControl from "./components/TicketControl/TicketControl"
+import Signin from './components/Signin'
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Header />
-      <TicketControl />
-    </>
+      <Routes>
+        <Route path='/' element={<TicketControl />}/>
+        <Route path='/signin' element={<Signin />}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
