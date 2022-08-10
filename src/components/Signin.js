@@ -34,16 +34,6 @@ function Signin() {
       console.log(err.message)
     })
   }
-
-  const handleSignOut = () => {
-
-    firebase.auth().signOut().then(function() {
-      console.log("Successfully signed out!")
-    }).catch(function(error) {
-      console.log(error.message)
-    })
-
-  }
   
   return (
     <React.Fragment>
