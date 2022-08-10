@@ -1,6 +1,8 @@
 # Issue Tracker Help Queue - :sparkles: Simple CRUD App :sparkles:
 
-The Help Queue application is as a study on CRUD operations. After logging into the application, users can view, edit and delete current 'active' tickets in the Help Queue, as well as create new tickets.
+This Help Queue application is as a study on CRUD operations. After login, users can view, edit and delete current 'active' tickets in the queue, as well as create new tickets.
+
+[Demo](https://redux-issue-queue.web.app/ "Demo Site")
 
 ## Tech Stack
 
