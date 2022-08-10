@@ -44,7 +44,8 @@ a:link, a:visited, a:hover, a:active {
 .header-wrap ul {
   display: flex;
   column-gap: 1rem;
-
+  justify-content: center;
+  align-items: center;
 }
 .header-wrap a:hover {
   color: #4498C9;

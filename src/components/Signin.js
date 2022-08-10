@@ -48,7 +48,7 @@ function Signin() {
   return (
     <React.Fragment>
       <div className='access-wrap'>
-        <h1>Sign Up</h1>
+        <h1>Register</h1>
         <form onSubmit={handleSignUp}>
           <input
             type='text'
@@ -60,10 +60,10 @@ function Signin() {
             name='password'
             autoComplete='off'
             placeholder='Password' />
-          <button type='submit'>Sign up</button>
+          <button type='submit'>Register</button>
         </form>
 
-        <h1>Sign In</h1>
+        <h1>Login</h1>
         <form onSubmit={handleSignIn}>
           <input
             type='text'
@@ -75,11 +75,8 @@ function Signin() {
             name='signinPassword'
             autoComplete='password'
             placeholder='Password' />
-          <button type='submit'>Sign in</button>
+          <button type='submit'>Login</button>
         </form>
-
-        <h1>Sign Out</h1>
-        <button onClick={handleSignOut}>Sign out</button>
       </div>
     </React.Fragment>
   )
