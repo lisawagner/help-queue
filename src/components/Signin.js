@@ -1,7 +1,9 @@
 import React from 'react'
 import firebase from "firebase/app"
+import { useNavigate } from 'react-router-dom'
 
 function Signin() {
+  const history = useNavigate()
 
   const handleSignUp = (e) => {
     e.preventDefault()
@@ -11,10 +13,26 @@ function Signin() {
 
     firebase.auth().createUserWithEmailAndPassword(email, password).then(function() {
       console.log('Successfullly signed up!')
+      e.target.reset()
+    history('/')
     }).catch(function(err) {
       console.log(err.message);
     })
+  }
 
+  const handleSignIn = (e) => {
+    e.preventDefault();
+
+    const email = e.target.signinEmail.value;
+    const password = e.target.signinPassword.value;
+
+    firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
+      console.log("Successfully signed in!");
+      e.target.reset()
+      history('/')
+    }).catch(function(err) {
+      console.log(err.message)
+    })
   }
 
   const handleSignOut = () => {
@@ -29,14 +47,30 @@ function Signin() {
   
   return (
     <React.Fragment>
-      <h1>Sign up</h1>
-      <form onSubmit={handleSignUp}>
-        <input type='text' name='email' placeholder='email' />
-        <input type='password' name='password' placeholder='Password' />
-        <button type='submit'>Sign up</button>
-      </form>
-      <h1>Sign Out</h1>
-      <button onClick={handleSignOut}>Sign out</button>
+      <div className='access-wrap'>
+        <h1>Sign Up</h1>
+        <form onSubmit={handleSignUp}>
+          <input type='text' name='email' placeholder='Email' />
+          <input type='password' name='password' placeholder='Password' />
+          <button type='submit'>Sign up</button>
+        </form>
+
+        <h1>Sign In</h1>
+        <form onSubmit={handleSignIn}>
+          <input
+            type='text'
+            name='signinEmail'
+            placeholder='email' />
+          <input
+            type='password'
+            name='signinPassword'
+            placeholder='Password' />
+          <button type='submit'>Sign in</button>
+        </form>
+
+        <h1>Sign Out</h1>
+        <button onClick={handleSignOut}>Sign out</button>
+      </div>
     </React.Fragment>
   )
 }
