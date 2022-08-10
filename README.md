@@ -10,8 +10,8 @@ This Help Queue application is as a study on CRUD operations. After login, users
   2.  Redux - State Management
   3.  React-redux-firebase and redux-firestore - Bindings
   4.  Firebase - Backend with:
-          - Firestore Database
-          - Firebase Authentication
+        - Firestore Database
+        - Firebase Authentication
 
 ## Application Structure Plan
 
