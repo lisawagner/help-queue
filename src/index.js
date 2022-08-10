@@ -8,7 +8,6 @@ import rootReducer from './reducers'
 // firebase
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import { createFirestoreInstance } from 'redux-firestore'
-import { auth } from 'firebase/app'
 import firebase from "./firebase"
 import 'firebase/auth'
 // components
