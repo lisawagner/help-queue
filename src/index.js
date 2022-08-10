@@ -8,7 +8,9 @@ import rootReducer from './reducers'
 // firebase
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import { createFirestoreInstance } from 'redux-firestore'
+import { auth } from 'firebase/app'
 import firebase from "./firebase"
+import 'firebase/auth'
 // components
 import App from './App'
 // styles
@@ -23,7 +25,8 @@ const store = createStore(rootReducer)
 const rrfProps = {
   firebase,
   config: {
-        userProfile: "users"
+        userProfile: "users",
+        useFirestoreForProfile: true,
     },
   dispatch: store.dispatch,
   createFirestoreInstance
