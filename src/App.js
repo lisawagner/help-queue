@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+// components
 import Header from "./components/Header"
 import TicketControl from "./components/TicketControl/TicketControl"
 import Signin from './components/Signin'
