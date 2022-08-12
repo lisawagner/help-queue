@@ -12,6 +12,7 @@ This Help Queue application is as a study on CRUD operations. After login, users
   4.  Firebase - Backend with:
         - Firestore Database
         - Firebase Authentication
+        - Firebase Hosting
 
 ## Application Structure Plan
 
